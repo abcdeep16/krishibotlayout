@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRISHIBOT - Find Agriculture Experts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .expert-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #10b981;
+        }
+        .expert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80');">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg py-2 px-4 flex justify-between items-center flex-wrap sticky top-0 z-10">
+        <a href="index.html" class="flex items-center space-x-1">
+            <img src="https://placehold.co/70x80/22c55e/ffffff?text=K" alt="KRISHIBOT Logo" style="height:70px ; width:80px;">
+            <span class="text-xl font-bold text-green-600">KRISHIBOT</span>
+        </a>
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">Home</a>
+            <a href="find-experts.html" class="text-green-600 font-medium border-b-2 border-green-600">Find Experts</a>
+            <a href="index.html#about-us" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">About Us</a>
+            <div class="relative inline-block text-left">
+                <div>
+                    <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="account-menu-button">
+                        Account
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" id="account-menu">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="account-menu-button">
+                        <a href="loginpage.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Login</a>
+                        <a href="loginpage.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign Up</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto py-8 px-4">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-green-700 mb-4">Find Agriculture Experts Near You</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Connect with certified agriculture experts in your area for personalized advice and consultations</p>
+        </div>
+
+        <!-- Location Permission Section -->
+        <div id="location-permission" class="bg-white rounded-xl shadow-lg p-6 mb-8 text-center">
+            <div class="flex justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Enable Location Services</h2>
+            <p class="text-gray-600 mb-6">To find agriculture experts near you, we need to access your location. Your data is secure and will not be shared with third parties.</p>
+            <button id="enable-location" class="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition duration-300 shadow-lg">
+                Enable Location Access
+            </button>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loading-section" class="hidden bg-white rounded-xl shadow-lg p-8 mb-8 text-center">
+            <div class="flex justify-center mb-4">
+                <div class="loading-spinner"></div>
+            </div>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Finding Experts Near You</h2>
+            <p class="text-gray-600">Scanning our database for certified agriculture experts in your area...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="hidden">
+            <!-- Map Section -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Experts Near You</h2>
+                <div id="map"></div>
+            </div>
+
+            <!-- Experts List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Expert cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Additional Resources -->
+            <div class="bg-green-50 rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-green-700 mb-4">Need More Help?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-semibold text-green-600 mb-2">Virtual Consultation</h3>
+                        <p class="text-sm text-gray-600">Schedule a video call with any expert for detailed guidance.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-semibold text-green-600 mb-2">Soil Testing Services</h3>
+                        <p class="text-sm text-gray-600">Get professional soil analysis for optimal crop planning.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="font-semibold text-green-600 mb-2">Crop Planning</h3>
+                        <p class="text-sm text-gray-600">Receive customized crop rotation and planting schedules.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="error-section" class="hidden bg-red-50 rounded-xl shadow-lg p-6 mb-8 text-center">
+            <div class="flex justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-red-700 mb-4">Location Access Denied</h2>
+            <p class="text-gray-600 mb-4">We couldn't access your location. Please enable location services in your browser settings or try again.</p>
+            <button id="retry-location" class="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                Try Again
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-green-300">© KRISHIBOT 2025. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="privacy-policy.html" class="hover:text-green-200 transition duration-200">Privacy Policy</a>
+                    <a href="terms-and-conditions.html" class="hover:text-green-200 transition duration-200">Terms & Conditions</a>
+                    <a href="cookie-policy.html" class="hover:text-green-200 transition duration-200">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAunocrujEIPvb_6ipwOP_QSmEvStceg-s&callback=initMap" async defer></script>
+
+    <script>
+        // DOM Elements
+        const locationPermission = document.getElementById('location-permission');
+        const loadingSection = document.getElementById('loading-section');
+        const resultsSection = document.getElementById('results-section');
+        const errorSection = document.getElementById('error-section');
+        const enableLocationBtn = document.getElementById('enable-location');
+        const retryLocationBtn = document.getElementById('retry-location');
+        
+        // Mock data for agriculture experts
+        const agricultureExperts = [
+            { name: "Dr. Rajesh Kumar", specialty: "Soil Science & Fertilizers", experience: "15 years", rating: 4.8, contact: "+91-98765-43210", lat: 0, lng: 0 },
+            { name: "Prof. Meena Sharma", specialty: "Organic Farming", experience: "12 years", rating: 4.7, contact: "+91-98765-43211", lat: 0, lng: 0 },
+            { name: "Dr. Anil Patel", specialty: "Crop Protection", experience: "18 years", rating: 4.9, contact: "+91-98765-43212", lat: 0, lng: 0 },
+            { name: "Ms. Priya Singh", specialty: "Horticulture", experience: "10 years", rating: 4.6, contact: "+91-98765-43213", lat: 0, lng: 0 },
+            { name: "Dr. Sanjay Verma", specialty: "Irrigation Systems", experience: "14 years", rating: 4.7, contact: "+91-98765-43214", lat: 0, lng: 0 },
+            { name: "Mr. Vikram Joshi", specialty: "Agricultural Economics", experience: "16 years", rating: 4.8, contact: "+91-98765-43215", lat: 0, lng: 0 },
+            { name: "Dr. Neha Gupta", specialty: "Plant Pathology", experience: "13 years", rating: 4.9, contact: "+91-98765-43216", lat: 0, lng: 0 },
+            { name: "Prof. Arun Malhotra", specialty: "Sustainable Agriculture", experience: "20 years", rating: 4.8, contact: "+91-98765-43217", lat: 0, lng: 0 },
+            { name: "Ms. Sunita Reddy", specialty: "Post-Harvest Technology", experience: "11 years", rating: 4.6, contact: "+91-98765-43218", lat: 0, lng: 0 },
+            { name: "Dr. Ramesh Iyer", specialty: "Agricultural Biotechnology", experience: "17 years", rating: 4.9, contact: "+91-98765-43219", lat: 0, lng: 0 }
+        ];
+
+        // Variables for map and user location
+        let map;
+        let userLocation = null;
+        let userMarker = null;
+        let expertMarkers = [];
+
+        // Initialize the application
+        function initApp() {
+            // Check if geolocation is supported
+            if (!navigator.geolocation) {
+                showError("Geolocation is not supported by your browser");
+                return;
+            }
+
+            // Set up event listeners
+            enableLocationBtn.addEventListener('click', requestLocation);
+            retryLocationBtn.addEventListener('click', requestLocation);
+
+            // Check if permission was previously granted on page load
+            navigator.permissions.query({name: 'geolocation'}).then(status => {
+                if (status.state === 'granted') {
+                    requestLocation();
+                }
+            });
+        }
+
+        // Request user's location
+        function requestLocation() {
+            locationPermission.classList.add('hidden');
+            errorSection.classList.add('hidden');
+            loadingSection.classList.remove('hidden');
+            
+            navigator.geolocation.getCurrentPosition(
+                // Success callback
+                (position) => {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        // FIX: Corrected typo from llongitude to longitude
+                        lng: position.coords.longitude 
+                    };
+                    loadingSection.classList.add('hidden');
+                    resultsSection.classList.remove('hidden');
+                    initMap();
+                    displayExperts();
+                },
+                // Error callback
+                (error) => {
+                    loadingSection.classList.add('hidden');
+                    showError("Location access was denied or failed to retrieve.");
+                    console.error("Error getting location:", error);
+                },
+                // Options
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                }
+            );
+        }
+
+        // Initialize Google Map (Global function required by Google Maps API script tag)
+        window.initMap = function() {
+            // If the map is ready but location isn't requested yet, do nothing
+            if (!userLocation) return; 
+            
+            // Create map centered on user's location
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: userLocation,
+                styles: [
+                    {
+                        featureType: "poi",
+                        elementType: "labels",
+                        stylers: [{ visibility: "off" }]
+                    }
+                ]
+            });
+
+            // Add user marker
+            userMarker = new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: "Your Location",
+                icon: {
+                    url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+                        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="15" cy="15" r="10" fill="#10b981" stroke="white" stroke-width="2"/>
+                            <circle cx="15" cy="15" r="5" fill="white"/>
+                        </svg>
+                    `),
+                    scaledSize: new google.maps.Size(30, 30),
+                    anchor: new google.maps.Point(15, 15)
+                }
+            });
+
+            // Generate expert locations around user
+            generateExpertLocations();
+            
+            // Add expert markers to map
+            addExpertMarkers();
+        }
+
+        // Generate random expert locations around user
+        function generateExpertLocations() {
+            const radius = 0.05; // Approximately 5km in degrees
+
+            agricultureExperts.forEach(expert => {
+                // Generate random offset within radius
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * radius;
+                
+                expert.lat = userLocation.lat + (Math.cos(angle) * distance);
+                expert.lng = userLocation.lng + (Math.sin(angle) * distance);
+            });
+        }
+
+        // Add expert markers to the map
+        function addExpertMarkers() {
+            expertMarkers = agricultureExperts.map(expert => {
+                const marker = new google.maps.Marker({
+                    position: { lat: expert.lat, lng: expert.lng },
+                    map: map,
+                    title: expert.name,
+                    icon: {
+                        url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#f59e0b" stroke="white" stroke-width="2"/>
+                                <text x="12" y="16" text-anchor="middle" fill="white" font-size="10">E</text>
+                            </svg>
+                        `),
+                        scaledSize: new google.maps.Size(24, 24),
+                        anchor: new google.maps.Point(12, 12)
+                    }
+                });
+
+                // Add info window
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `
+                        <div class="p-2">
+                            <h3 class="font-bold">${expert.name}</h3>
+                            <p class="text-sm">${expert.specialty}</p>
+                            <p class="text-sm">Rating: ${expert.rating}/5</p>
+                        </div>
+                    `
+                });
+
+                marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                });
+
+                return marker;
+            });
+        }
+
+        // Display expert cards
+        function displayExperts() {
+            const expertsContainer = document.querySelector('#results-section .grid');
+            expertsContainer.innerHTML = '';
+
+            agricultureExperts.forEach(expert => {
+                const card = document.createElement('div');
+                card.className = 'expert-card bg-white rounded-lg shadow-md p-4';
+                card.innerHTML = `
+                    <div class="flex items-start mb-3">
+                        <div class="bg-green-100 rounded-full p-2 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">${expert.name}</h3>
+                            <p class="text-green-600 font-medium">${expert.specialty}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600 mb-3">
+                        <span>${expert.experience} experience</span>
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            ${expert.rating}
+                        </span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-700 font-medium">${expert.contact}</span>
+                        <!-- MODIFIED: Added onclick handler to open Google Maps in a new tab -->
+                        <button onclick="openGoogleMaps(${expert.lat}, ${expert.lng})" 
+                                class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition duration-200">
+                            Navigate
+                        </button>
+                    </div>
+                `;
+                expertsContainer.appendChild(card);
+            });
+        }
+
+        // Show error message
+        function showError(message) {
+            errorSection.classList.remove('hidden');
+            locationPermission.classList.add('hidden');
+            loadingSection.classList.add('hidden');
+            resultsSection.classList.add('hidden');
+        }
+        
+        // Function to open Google Maps (Global function)
+        function openGoogleMaps(lat, lng) {
+            if (lat === 0 && lng === 0) {
+                // Handle mock data case where coordinates haven't been truly calculated
+                alert("Expert location is currently mock data. Navigation unavailable.");
+                return;
+            }
+            // Opens Google Maps in a new tab with the expert's coordinates
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+            window.open(mapsUrl, '_blank');
+        }
+
+        // Initialize the app when the page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
