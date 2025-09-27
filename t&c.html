@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - KRISHIBOT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-section {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #16a34a;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+        }
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+        .toc-link:hover {
+            color: #16a34a;
+            padding-left: 0.5rem;
+        }
+        .highlight-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image Container -->
+    <div class="background-container">
+        <img src="./image2.png" alt="Background" class="background-image">
+    </div>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="bg-white/90 backdrop-blur-sm shadow-lg py-2 px-4 flex justify-between items-center flex-wrap sticky top-0 z-10">
+            <a href="index.html" class="flex items-center space-x-1">
+                <img src="./logo3.png" alt="KRISHIBOT Logo" style="height:70px ; width:80px;">
+                <span class="text-xl font-bold text-green-600">KRISHIBOT</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">Home</a>
+                <a href="index.html#about-us" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">About Us</a>
+                <div class="relative inline-block text-left">
+                    <div>
+                        <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="account-menu-button">
+                            Account
+                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" id="account-menu">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="account-menu-button">
+                            <a href="loginpage.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Login</a>
+                            <a href="loginpage.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign Up</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-4xl mx-auto py-8 px-4">
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold text-green-700 mb-4">Terms and Conditions</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Last updated: September 27, 2025</p>
+                <p class="text-gray-500 mt-2">Please read these terms carefully before using KRISHIBOT</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Table of Contents -->
+                <div class="lg:w-1/4">
+                    <div class="content-section p-6 sticky top-24">
+                        <h2 class="font-bold text-lg text-green-700 mb-4">Table of Contents</h2>
+                        <ul class="space-y-2">
+                            <li><a href="#acceptance" class="toc-link text-gray-600 block">1. Acceptance of Terms</a></li>
+                            <li><a href="#description" class="toc-link text-gray-600 block">2. Service Description</a></li>
+                            <li><a href="#registration" class="toc-link text-gray-600 block">3. Registration & Accounts</a></li>
+                            <li><a href="#user-responsibilities" class="toc-link text-gray-600 block">4. User Responsibilities</a></li>
+                            <li><a href="#intellectual-property" class="toc-link text-gray-600 block">5. Intellectual Property</a></li>
+                            <li><a href="#privacy" class="toc-link text-gray-600 block">6. Privacy Policy</a></li>
+                            <li><a href="#disclaimer" class="toc-link text-gray-600 block">7. Disclaimer of Warranties</a></li>
+                            <li><a href="#limitation-liability" class="toc-link text-gray-600 block">8. Limitation of Liability</a></li>
+                            <li><a href="#indemnification" class="toc-link text-gray-600 block">9. Indemnification</a></li>
+                            <li><a href="#termination" class="toc-link text-gray-600 block">10. Termination</a></li>
+                            <li><a href="#governing-law" class="toc-link text-gray-600 block">11. Governing Law</a></li>
+                            <li><a href="#changes" class="toc-link text-gray-600 block">12. Changes to Terms</a></li>
+                            <li><a href="#contact" class="toc-link text-gray-600 block">13. Contact Information</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Terms Content -->
+                <div class="lg:w-3/4">
+                    <!-- Section 1 -->
+                    <div id="acceptance" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">1. Acceptance of Terms</h2>
+                        <p class="text-gray-700 mb-4">By accessing or using KRISHIBOT (the "Service"), you agree to be bound by these Terms and Conditions ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
+                        <div class="highlight-box">
+                            <p class="text-green-700 font-medium">Important: These terms constitute a legal agreement between you and KRISHIBOT. By using our services, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div id="description" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">2. Service Description</h2>
+                        <p class="text-gray-700 mb-4">KRISHIBOT is an AI-powered agricultural assistant designed to provide farmers with:</p>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                            <li>Crop health analysis and disease identification</li>
+                            <li>Weather alerts and agricultural recommendations</li>
+                            <li>Planting schedules and farming best practices</li>
+                            <li>Multilingual support for agricultural queries</li>
+                            <li>Image-based plant and soil analysis</li>
+                        </ul>
+                        <p class="text-gray-700 mt-4">The Service is provided for informational purposes only and should not replace professional agricultural advice.</p>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <div id="registration" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">3. Registration & Accounts</h2>
+                        <p class="text-gray-700 mb-4">To access certain features of the Service, you may be required to register for an account.</p>
+                        <p class="text-gray-700 mb-2">When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms.</p>
+                        <p class="text-gray-700 mb-2">You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password.</p>
+                        <p class="text-gray-700">You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.</p>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <div id="user-responsibilities" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">4. User Responsibilities</h2>
+                        <p class="text-gray-700 mb-4">As a user of KRISHIBOT, you agree to:</p>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                            <li>Use the Service only for lawful purposes</li>
+                            <li>Not upload harmful or malicious content</li>
+                            <li>Not attempt to disrupt or compromise the Service</li>
+                            <li>Not use the Service for any fraudulent or misleading activities</li>
+                            <li>Comply with all applicable laws and regulations</li>
+                        </ul>
+                        <div class="highlight-box mt-4">
+                            <p class="text-green-700 font-medium">Agricultural Disclaimer: The information provided by KRISHIBOT is based on AI analysis and should be verified with local agricultural experts before implementation. Weather and agricultural conditions vary by location.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <div id="intellectual-property" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">5. Intellectual Property</h2>
+                        <p class="text-gray-700 mb-4">The Service and its original content, features, and functionality are and will remain the exclusive property of KRISHIBOT and its licensors.</p>
+                        <p class="text-gray-700">The Service is protected by copyright, trademark, and other laws of both the India and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of KRISHIBOT.</p>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <div id="privacy" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">6. Privacy Policy</h2>
+                        <p class="text-gray-700 mb-4">Your use of the Service is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information.</p>
+                        <p class="text-gray-700">Please review our Privacy Policy to understand our practices. By using the Service, you consent to the collection and use of information as described in the Privacy Policy.</p>
+                    </div>
+
+                    <!-- Section 7 -->
+                    <div id="disclaimer" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">7. Disclaimer of Warranties</h2>
+                        <p class="text-gray-700 mb-4">The Service is provided on an "AS IS" and "AS AVAILABLE" basis. KRISHIBOT makes no representations or warranties of any kind, express or implied, as to the operation of the Service, or the information, content, or materials included therein.</p>
+                        <p class="text-gray-700">You expressly agree that your use of the Service is at your sole risk. We do not warrant that the Service will be uninterrupted, timely, secure, or error-free.</p>
+                        <div class="highlight-box mt-4">
+                            <p class="text-green-700 font-medium">Agricultural Advice Disclaimer: KRISHIBOT provides AI-generated agricultural suggestions. These should be considered as guidance rather than definitive instructions. Always consult with local agricultural experts for critical farming decisions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 8 -->
+                    <div id="limitation-liability" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">8. Limitation of Liability</h2>
+                        <p class="text-gray-700 mb-4">In no event shall KRISHIBOT, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                            <li>Your access to or use of or inability to access or use the Service</li>
+                            <li>Any conduct or content of any third party on the Service</li>
+                            <li>Any content obtained from the Service</li>
+                            <li>Unauthorized access, use or alteration of your transmissions or content</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 9 -->
+                    <div id="indemnification" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">9. Indemnification</h2>
+                        <p class="text-gray-700">You agree to defend, indemnify and hold harmless KRISHIBOT and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.</p>
+                    </div>
+
+                    <!-- Section 10 -->
+                    <div id="termination" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">10. Termination</h2>
+                        <p class="text-gray-700 mb-4">We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+                        <p class="text-gray-700">Upon termination, your right to use the Service will immediately cease. If you wish to terminate your account, you may simply discontinue using the Service.</p>
+                    </div>
+
+                    <!-- Section 11 -->
+                    <div id="governing-law" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">11. Governing Law</h2>
+                        <p class="text-gray-700">These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+                    </div>
+
+                    <!-- Section 12 -->
+                    <div id="changes" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">12. Changes to Terms</h2>
+                        <p class="text-gray-700 mb-4">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect.</p>
+                        <p class="text-gray-700">What constitutes a material change will be determined at our sole discretion. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.</p>
+                    </div>
+
+                    <!-- Section 13 -->
+                    <div id="contact" class="content-section p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-green-700 mb-4">13. Contact Information</h2>
+                        <p class="text-gray-700 mb-2">If you have any questions about these Terms, please contact us:</p>
+                        <ul class="list-disc pl-6 text-gray-700">
+                            <li>Email: legal@krishibot.com</li>
+                            <li>Address: KRISHIBOT Technologies, Agricultural Innovation Park, Bangalore, India</li>
+                            <li>Phone: +91-80-XXXX-XXXX</li>
+                        </ul>
+                    </div>
+
+                    <!-- Acceptance Section -->
+                    <div class="content-section p-6 bg-green-50 border border-green-200">
+                        <h2 class="text-xl font-bold text-green-700 mb-4">Acceptance of Terms</h2>
+                        <p class="text-gray-700 mb-4">By using KRISHIBOT, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+                        <div class="flex justify-center">
+                            <a href="loginpage.html" class="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                                I Accept These Terms
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Back to Top Button -->
+        <div class="back-to-top hidden" id="backToTop">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-green-800 text-white mt-12">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-green-300">© KRISHIBOT 2025. All rights reserved.</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="privacy-policy.html" class="hover:text-green-200 transition duration-200">Privacy Policy</a>
+                        <a href="terms-and-conditions.html" class="hover:text-green-200 transition duration-200 font-semibold">Terms & Conditions</a>
+                        <a href="cookie-policy.html" class="hover:text-green-200 transition duration-200">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Account menu functionality
+        const accountButton = document.getElementById('account-menu-button');
+        const accountMenu = document.getElementById('account-menu');
+
+        accountButton.addEventListener('click', () => {
+            accountMenu.classList.toggle('hidden');
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (!accountButton.contains(event.target) && !accountMenu.contains(event.target)) {
+                accountMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
