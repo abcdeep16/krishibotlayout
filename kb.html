@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi Bot</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            background-image: linear-gradient(rgba(18,18,18,0.85), rgba(18,18,18,0.85)), url('botbackground.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #chat-window {
+            background-image: url('botbackground.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        #chat-window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 18, 18, 0.85); /* Dark overlay for readability */
+            z-index: 0;
+        }
+        #chat-window .message {
+            position: relative;
+            z-index: 1; /* Ensures messages appear above the background */
+        }
+        .chat-container {
+            max-height: 80vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #4A4A4A #2C2C2C;
+        }
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: #2C2C2C;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: #4A4A4A;
+            border-radius: 10px;
+            border: 2px solid #2C2C2C;
+        }
+        .message {
+            max-width: 80%;
+            border-radius: 1.5rem;
+            padding: 0.75rem 1rem;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #3730a3;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #2C2C2C;
+            color: #E0E0E0;
+            align-self: flex-start;
+        }
+        .mode-selected {
+            background-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
+        }
+        .mic-listening {
+            background-color: #22c55e !important;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+<div class="w-full max-w-2xl bg-gray-800 rounded-2xl shadow-lg flex flex-col h-[95vh]">
+    <!-- Header -->
+    <div class="p-4 bg-gray-900 rounded-t-2xl flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-green-400">Krishi Bot</h1>
+        <div class="flex items-center space-x-2">
+            <!-- Language Selector -->
+            <select id="languageSelect" class="bg-gray-700 text-white rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition">
+                <option value="en">English</option>
+                <option value="hi">Hindi (हिंदी)</option>
+                <option value="kn">Kannada (ಕನ್ನಡ)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-container flex flex-col p-4 space-y-4 flex-grow">
+        <div class="bot-message message text-center mx-auto">
+            Hello! I am your Krishi Bot. How can I help you today?
+        </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-4 bg-gray-900 rounded-b-2xl flex flex-col space-y-2">
+        <!-- Image Analysis Type Selector -->
+        <div class="flex space-x-4 mb-2 justify-center">
+            <button id="plantBtn" class="flex-1 py-2 px-4 rounded-full bg-green-600 text-white hover:bg-green-700 transition">Analyze Plant</button>
+            <button id="soilBtn" class="flex-1 py-2 px-4 rounded-full bg-green-600 text-white hover:bg-green-700 transition">Analyze Soil</button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <input type="file" id="imageInput" accept="image/*" class="hidden">
+            <button id="uploadBtn" class="p-3 bg-gray-700 text-white rounded-full hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+            </button>
+            <input type="text" id="userInput" class="flex-grow p-3 rounded-full bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition" placeholder="Type a message or use the mic...">
+            <button id="micBtn" class="p-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-14 0v-2a7 7 0 0114 0v2z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19v4m-2-2h4" />
+                </svg>
+            </button>
+            <button id="sendBtn" class="p-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ----- CONFIGURATION -----
+    const API_KEY = "AIzaSyAunocrujEIPvb_6ipwOP_QSmEvStceg-s";
+    const CHAT_MODEL = "gemini-2.5-flash"; 
+    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/" + CHAT_MODEL + ":generateContent?key=" + API_KEY; 
+
+    // ----- UI ELEMENTS -----
+    const chatWindow = document.getElementById('chat-window');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const micBtn = document.getElementById('micBtn');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const imageInput = document.getElementById('imageInput');
+    const plantBtn = document.getElementById('plantBtn');
+    const soilBtn = document.getElementById('soilBtn');
+    const languageSelect = document.getElementById('languageSelect');
+
+    let analysisType = 'plant';
+    let isListening = false;
+    let recognition = null;
+
+    // Language code mapping
+    const LANG_MAP = {
+        "en": "en-US",
+        "hi": "hi-IN",
+        "kn": "kn-IN"
+    };
+    
+    // Check for Web Speech API support with better detection
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const isSpeechSupported = !!SpeechRecognition;
+    
+    if (!isSpeechSupported) {
+        micBtn.disabled = true;
+        micBtn.title = "Speech recognition not supported in your browser";
+        micBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        console.warn("Web Speech API is not supported in this browser.");
+    } else {
+        // Initialize speech recognition
+        initializeSpeechRecognition();
+    }
+
+    // Initialize mode highlighting
+    plantBtn.classList.add('mode-selected');
+    
+    // ----- UTILITY FUNCTIONS -----
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', 'p-3', 'rounded-xl', 'transition', 'duration-300');
+        if (isUser) {
+            messageDiv.classList.add('user-message', 'ml-auto', 'bg-indigo-600');
+        } else {
+            messageDiv.classList.add('bot-message', 'bg-gray-700', 'mr-auto');
+        }
+        const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        messageDiv.innerHTML = formattedText;
+        chatWindow.appendChild(messageDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function addLoadingIndicator() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.id = 'loadingIndicator';
+        loadingDiv.classList.add('bot-message', 'bg-gray-700', 'animate-pulse', 'mr-auto');
+        loadingDiv.textContent = '...';
+        chatWindow.appendChild(loadingDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function removeLoadingIndicator() {
+        const loadingDiv = document.getElementById('loadingIndicator');
+        if (loadingDiv) {
+            loadingDiv.remove();
+        }
+    }
+    
+    function setAnalysisMode(type) {
+        analysisType = type;
+        plantBtn.classList.remove('mode-selected');
+        soilBtn.classList.remove('mode-selected');
+
+        if (type === 'plant') {
+            plantBtn.classList.add('mode-selected');
+            addMessage("Image analysis mode set to: 🌾 **Analyze Plant** (Upload a leaf/plant image).", false);
+        } else if (type === 'soil') {
+            soilBtn.classList.add('mode-selected');
+            addMessage("Image analysis mode set to: 🏞️ **Analyze Soil** (Upload a soil sample image).", false);
+        }
+    }
+
+    // ----- SPEECH RECOGNITION FUNCTIONS -----
+    function initializeSpeechRecognition() {
+        try {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = function() {
+                isListening = true;
+                micBtn.classList.add('mic-listening');
+                addMessage("🎤 **Listening...** Speak now!", false);
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                addMessage(transcript, true);
+                userInput.value = transcript;
+                
+                // Auto-send after speech
+                setTimeout(() => {
+                    sendBtn.click();
+                }, 500);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                isListening = false;
+                micBtn.classList.remove('mic-listening');
+                
+                let errorMessage = "Speech recognition error: ";
+                switch(event.error) {
+                    case 'not-allowed':
+                    case 'permission-denied':
+                        errorMessage = "🔒 **Microphone permission denied**. Please allow microphone access in your browser settings and reload the page.";
+                        break;
+                    case 'no-speech':
+                        errorMessage = "🔇 **No speech detected**. Please try speaking louder or clearer.";
+                        break;
+                    case 'audio-capture':
+                        errorMessage = "🎤 **No microphone found**. Please check if your microphone is connected properly.";
+                        break;
+                    case 'network':
+                        errorMessage = "🌐 **Network error**. Please check your internet connection.";
+                        break;
+                    default:
+                        errorMessage = `❌ **Error**: ${event.error}. Please try again.`;
+                }
+                addMessage(errorMessage, false);
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                micBtn.classList.remove('mic-listening');
+            };
+
+        } catch (error) {
+            console.error('Failed to initialize speech recognition:', error);
+            micBtn.disabled = true;
+            micBtn.title = "Speech recognition initialization failed";
+            micBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            addMessage("❌ **Speech recognition failed to initialize**. This feature is not available.", false);
+        }
+    }
+
+    function toggleSpeechRecognition() {
+        if (!isSpeechSupported || !recognition) {
+            addMessage("❌ **Speech recognition is not available** in your browser.", false);
+            return;
+        }
+
+        try {
+            if (isListening) {
+                recognition.stop();
+            } else {
+                const lang = languageSelect.value;
+                recognition.lang = LANG_MAP[lang] || "en-US";
+                recognition.start();
+            }
+        } catch (error) {
+            console.error('Error toggling speech recognition:', error);
+            addMessage("❌ **Error starting microphone**. Please try again.", false);
+        }
+    }
+
+    // Request microphone permission explicitly
+    async function requestMicrophonePermission() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            // Immediately stop the stream since we just needed permission
+            stream.getTracks().forEach(track => track.stop());
+            return true;
+        } catch (error) {
+            console.error('Microphone permission denied:', error);
+            addMessage("🔒 **Microphone access blocked**. Please allow microphone permissions in your browser settings.", false);
+            return false;
+        }
+    }
+
+    // ----- API INTERACTION -----
+    async function getGeminiResponse(prompt, imageBase64 = null) {
+        addLoadingIndicator();
+        
+        const langCode = languageSelect.value;
+        const promptWithLanguage = `
+            The user's language code is '${langCode}'. 
+            Please analyze the following request and respond ONLY in the language corresponding to that code.
+
+            Query:
+            ${prompt}
+        `;
+
+        const requestPayload = {
+            contents: [{
+                parts: []
+            }],
+            generationConfig: {
+                maxOutputTokens: 2000
+            }
+        };
+
+        requestPayload.contents[0].parts.push({ text: promptWithLanguage });
+
+        if (imageBase64) {
+            requestPayload.contents[0].parts.push({
+                inlineData: {
+                    mimeType: "image/jpeg",
+                    data: imageBase64
+                }
+            });
+        }
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestPayload)
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                console.error('API Error:', error);
+                removeLoadingIndicator();
+                addMessage(`❌ AI Service Error (Status ${response.status}): Could not connect to the Gemini API.`, false);
+                return;
+            }
+
+            const data = await response.json();
+            removeLoadingIndicator();
+            const botResponse = data.candidates[0].content.parts[0].text;
+            addMessage(botResponse, false);
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            removeLoadingIndicator();
+            addMessage(`Sorry, I couldn't connect to the server. Please check your internet connection.`, false);
+        }
+    }
+
+    // ----- EVENT LISTENERS -----
+    sendBtn.addEventListener('click', () => {
+        const text = userInput.value.trim();
+        if (text) {
+            addMessage(text, true);
+            userInput.value = '';
+            
+            let prompt = "";
+            if (text.toLowerCase().includes("compare")) {
+                prompt = `Compare the crops specified in this query: '${text}'. Provide estimated yield, market demand, and profitability.`;
+            } else if (text.toLowerCase().includes("demand") || text.toLowerCase().includes("what to grow")) {
+                prompt = `What is in demand and what should a farmer grow? Provide a list of beneficial crops and explain why.`;
+            } else {
+                prompt = `Answer this farming-related question: '${text}'. Provide details on crops, plants, leaves, or general agricultural advice.`;
+            }
+
+            getGeminiResponse(prompt);
+        }
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendBtn.click();
+        }
+    });
+
+    // Microphone button with permission request
+    micBtn.addEventListener('click', async () => {
+        if (!isSpeechSupported) {
+            addMessage("❌ **Speech recognition is not supported** in your browser. Try Chrome or Edge.", false);
+            return;
+        }
+
+        // Request permission first
+        const hasPermission = await requestMicrophonePermission();
+        if (hasPermission) {
+            toggleSpeechRecognition();
+        }
+    });
+
+    // Image upload handler
+    uploadBtn.addEventListener('click', () => {
+        imageInput.click();
+    });
+
+    imageInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64Data = reader.result.split(',')[1];
+                let prompt = "";
+                
+                addMessage(`Uploading image for ${analysisType} analysis...`, true);
+
+                if (analysisType === 'plant') {
+                    prompt = "Analyze the condition of this plant or leaf. Identify any potential disease, pests, or nutrient deficiency. If healthy, state so. Provide actionable treatment advice.";
+                } else if (analysisType === 'soil') {
+                    prompt = "Analyze this soil sample. Identify any impurities and assess its quality, texture, and potential nutrient deficiencies.";
+                }
+
+                getGeminiResponse(prompt, base64Data);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    // Set analysis type buttons
+    plantBtn.addEventListener('click', () => {
+        setAnalysisMode('plant');
+    });
+
+    soilBtn.addEventListener('click', () => {
+        setAnalysisMode('soil');
+    });
+
+    // Language change handler
+    languageSelect.addEventListener('change', () => {
+        const lang = languageSelect.value;
+        const langNames = {
+            "en": "English",
+            "hi": "Hindi",
+            "kn": "Kannada"
+        };
+        addMessage(`🌐 **Language changed to**: ${langNames[lang]}`, false);
+    });
+
+    // Add initial instructions
+    setTimeout(() => {
+        addMessage("💡 **Tip**: Click the microphone button and allow permissions to use voice input!", false);
+    }, 2000);
+
+</script>
+</body>
+</html>

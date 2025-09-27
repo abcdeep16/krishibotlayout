@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRISHIBOT Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Setting Inter font as default and general body background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background for sections */
+        }
+
+        /* Custom style for the Hero section background image */
+        .hero-background {
+            /* Replace this URL with your beautiful agriculture image! */
+            background-image: url(); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Ensure the main content area is centered and takes full viewport width */
+        .main-content-container {
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar (Kept the user's complex structure) -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg py-2 px-4 flex justify-between items-center flex-wrap sticky top-0 z-10">
+
+        <a href="#" class="flex items-center space-x-1">
+            <!-- Note: Placeholder image paths (./logo3.png) will not render -->
+            <img src="./logo3.png" alt="KRISHIBOT Logo" style="height:70px ; width:80px;" class="rounded-lg">
+            <span class="text-2xl font-bold text-green-600">KRISHIBOT</span>
+        </a>
+        <div class="flex items-center space-x-4">
+            <a href="#" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">Home</a>
+            <a href="#about-us" class="text-gray-600 hover:text-green-600 transition duration-300 font-medium">About Us</a>
+            
+            <div class="relative inline-block text-left">
+                <div>
+                    <!-- Updated button to include a user icon and label -->
+                    <button type="button" class="inline-flex items-center justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500" id="account-menu-button">
+                        <!-- User Icon -->
+                        <svg class="h-5 w-5 mr-1 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        
+                        <!-- Chevron Icon -->
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-20" id="account-menu">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="account-menu-button">
+                        
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center p-0">
+        
+        <!-- KRISHIBOT HERO SECTION (with Background and CTA) -->
+        <div class="w-full hero-background relative">
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
+
+            <!-- Content Container -->
+            <div class="relative z-10 text-center py-20 px-4 main-content-container flex flex-col items-center justify-center">
+                <h4 class="text-5xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-lg">
+                    Get ready to meet your powerful AI farming partner.
+
+ <span class="text-green-400"></span>
+                </h4>
+                <p class="mt-4 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto drop-shadow-md">
+                    Your AI-powered agricultural companion for smart farming and maximum yields.
+                </p>
+
+               <div class="mt-10 flex justify-center space-x-4">
+    <a href="kb.html" class="
+        px-10 py-4 bg-green-600 text-white rounded-xl font-extrabold text-xl
+        hover:bg-green-700 transition duration-300 shadow-2xl shadow-green-600/50 
+        transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-400
+    ">
+        KRISHIBOT 🌱
+    </a>
+    </div>
+            </div>
+        </div>
+        <!-- END KRISHIBOT HERO SECTION -->
+
+        <!-- Section: Farm Smarter, Not Harder -->
+        <section class="w-full max-w-5xl my-16 p-8 md:p-16 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl mx-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-left">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Farm Smarter, Not Harder</h2>
+                    <p class="text-xl text-gray-600 mb-6">
+                        KRISHIBOT puts expert agricultural knowledge right in your pocket. Diagnose crop diseases, get real-time weather alerts, and receive optimized planting schedules tailored to your land.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center text-lg font-medium"><span class="text-green-500 mr-2">✅</span> Increase Your Yields</li>
+                        <li class="flex items-center text-lg font-medium"><span class="text-green-500 mr-2">✅</span> Minimize Resource Waste</li>
+                        <li class="flex items-center text-lg font-medium"><span class="text-green-500 mr-2">✅</span> Get Instant, Multilingual Advice</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-green-100 rounded-2xl shadow-inner shadow-green-300 w-full max-w-xs h-72 flex items-center justify-center text-green-700 text-center p-4 border-4 border-green-500">
+                        [Placeholder for Feature Image]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Key Features -->
+        <div class="bg-white/80 backdrop-blur-sm p-8 sm:p-12 rounded-2xl shadow-xl w-full max-w-5xl mt-8 mx-4 mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Key Features</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-xl bg-white/90 border border-gray-100 shadow-md transform hover:scale-[1.02] transition duration-300">
+                    <!-- Note: Placeholder image paths (ppp1.png) will not render -->
+                    <img src="https://placehold.co/64x64/10b981/ffffff?text=AI" alt="Feature Icon 1" class="mx-auto mb-4 w-16 h-16 rounded-full">
+                    <h3 class="font-bold text-xl text-green-700">AI BOT</h3>
+                    <p class="mt-2 text-gray-600 text-sm">KRISHIBOT provides farmers with smart farming solutions, from crop health analysis to resource management.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-white/90 border border-gray-100 shadow-md transform hover:scale-[1.02] transition duration-300">
+                    <!-- Note: Placeholder image paths (ls.jpg) will not render -->
+                    <img src="https://placehold.co/64x64/10b981/ffffff?text=Lang" alt="Feature Icon 2" class="mx-auto mb-4 w-16 h-16 rounded-full">
+                    <h3 class="font-bold text-xl text-green-700">Language Support</h3>
+                    <p class="mt-2 text-gray-600 text-sm">Our bot supports multiple languages, allowing it to communicate with farmers in their preferred dialect for a truly inclusive experience.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-white/90 border border-gray-100 shadow-md transform hover:scale-[1.02] transition duration-300">
+                    <!-- Note: Placeholder image paths (etu.jpg) will not render -->
+                    <img src="https://placehold.co/64x64/10b981/ffffff?text=Easy" alt="Feature Icon 3" class="mx-auto mb-4 w-16 h-16 rounded-full">
+                    <h3 class="font-bold text-xl text-green-700">Easy To Use</h3>
+                    <p class="mt-2 text-gray-600 text-sm">Our bot features an intuitive design that makes it exceptionally easy to use, ensuring a smooth experience for all users.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section: About Us / Our Mission -->
+        <section id="about-us" class="w-full max-w-5xl my-16 p-8 md:p-12 bg-white rounded-3xl shadow-xl text-center mx-4">
+            <h2 class="text-4xl font-extrabold text-green-700 mb-6">Our Mission</h2>
+            
+            <div class="text-left max-w-4xl mx-auto space-y-6 text-lg text-gray-700">
+                <p>
+                    KRISHIBOT was founded on a simple, yet powerful belief: that technology should serve everyone, especially the backbone of our economy—our farmers. We recognized the challenges faced by local farmers, from unpredictable weather and pest outbreaks to lack of immediate, expert advice.
+                </p>
+                <p>
+                    Our solution is an advanced, multilingual AI companion that democratizes agricultural expertise. By harnessing the power of artificial intelligence, machine learning, and vast crop data, KRISHIBOT provides instant, accurate, and localized recommendations right to the farmer's phone.
+                </p>
+                <p class="font-semibold text-gray-800">
+                    Our Vision:To foster a world where every farmer, regardless of the size of their land or their literacy level, has the tools to achieve maximum yield, sustainable practices, and prosperity. Join us as we cultivate the future of agriculture, one smart decision at a time.
+                </p>
+                
+                <div class="pt-6 text-center">
+                    <a href="#" class="px-10 py-3 bg-green-500 text-white rounded-lg font-semibold text-lg hover:bg-green-600 transition duration-300 shadow-lg">
+                        Contact Our Team
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="bg-green-700 text-white p-6 mt-auto">
+        <div class="text-center">
+            <p>&copy; 2025 KRISHIBOT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Dropdown functionality for the account menu
+        const accountButton = document.getElementById('account-menu-button');
+        const accountMenu = document.getElementById('account-menu');
+
+        accountButton.addEventListener('click', () => {
+            accountMenu.classList.toggle('hidden');
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (!accountButton.contains(event.target) && !accountMenu.contains(event.target)) {
+                accountMenu.classList.add('hidden');
+            }
+        });
+
+        // JavaScript function for the main call-to-action button
+        function launchBot() {
+            // In a real application, you would navigate to the bot page here:
+            // window.location.href = '/bot-interface.html';
+            
+            // For now, we will display a friendly message in a custom modal (since alerts are not allowed)
+            showCustomModal("KrishiBot is launching! (Simulated Navigation)", "Welcome to the future of agriculture. You would now be redirected to the main chat interface.");
+            console.log("Launching KrishiBot...");
+        }
+
+        // Custom Modal implementation (Replaces alert())
+        function showCustomModal(title, message) {
+            const existingModal = document.getElementById('custom-modal');
+            if (existingModal) existingModal.remove();
+
+            const modalHtml = `
+                <div id="custom-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4" onclick="document.getElementById('custom-modal').remove()">
+                    <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6" onclick="event.stopPropagation()">
+                        <h3 class="text-xl font-bold text-green-700 mb-4">${title}</h3>
+                        <p class="text-gray-700 mb-6">${message}</p>
+                        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-150" onclick="document.getElementById('custom-modal').remove()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+    </script>
+</body>
+</html>
