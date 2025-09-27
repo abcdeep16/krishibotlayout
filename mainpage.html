@@ -59,7 +59,7 @@
                             <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                         </button>
                         <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-green-100 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-20" data-dropdown="home">
-                            <a href="#our-experts" class="block px-5 py-3 hover:bg-green-50 transition">Our Experts</a>
+                            <a href="uni.html" class="block px-5 py-3 hover:bg-green-50 transition">Our Experts</a>
                             <a href="HowItWorks.html" class="block px-5 py-3 hover:bg-green-50 transition">How It Works</a>
                             <a href="OurMission.html" class="block px-5 py-3 hover:bg-green-50 transition">Our Mission</a>
                         </div>
@@ -86,10 +86,17 @@
                             Home
                             <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                         </button>
+<<<<<<< HEAD
                         <div class="mobile-dropdown hidden flex-col bg-white rounded-lg shadow-lg border border-green-100 mt-1" data-mobile-dropdown="home">
                             <a href="#our-experts" class="block px-5 py-3 hover:bg-green-50 transition">Our Experts</a>
                             <a href="HowItWorks.html" class="block px-5 py-3 hover:bg-green-50 transition">How It Works</a>
                             <a href="OurMission.html" class="block px-5 py-3 hover:bg-green-50 transition">Our Mission</a>
+=======
+                                    <div class="mobile-dropdown hidden flex-col bg-white rounded-lg shadow-lg border border-green-100 mt-1" data-mobile-dropdown="home">
+                                        <a href="uni.html" class="block px-5 py-3 hover:bg-green-50 transition">Our Experts</a>
+                                        <a href="HowItWorks.html" class="block px-5 py-3 hover:bg-green-50 transition">How It Works</a>
+                                        <a href="OurMission.html" class="block px-5 py-3 hover:bg-green-50 transition">Our Mission</a>
+>>>>>>> bd9ac6f174fb2e6d19028af5326f36807cac6890
                         </div>
                     </div>
                     <div class="relative">
@@ -252,14 +259,15 @@
                 });
             });
 
-            // Mobile dropdowns
-            document.querySelectorAll('[data-mobile-dropdown-btn]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const key = btn.getAttribute('data-mobile-dropdown-btn');
-                    const menu = document.querySelector(`[data-mobile-dropdown="${key}"]`);
-                    menu.classList.toggle('hidden');
-                });
-            });
+           // Mobile dropdowns
+document.querySelectorAll('[data-mobile-dropdown-btn]').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const key = btn.getAttribute('data-mobile-dropdown-btn');
+        // FIX APPLIED HERE: Using template literal (backticks) to create the selector string
+        const menu = document.querySelector(`[data-mobile-dropdown="${key}"]`);
+        menu.classList.toggle('hidden');
+    });
+});
 
             // Sticky header shadow on scroll (elevated effect)
             const header = document.getElementById('main-header');
