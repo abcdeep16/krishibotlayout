@@ -1,230 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KRISHIBOT Login</title>
-    <!-- Use the Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Load Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            /* FIX: Ensure background color is valid (was missing #) */
-            background-color: #f3f4f6; 
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KRISHIBOT Login</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+    }
+  </style>
 </head>
-<body class="flex flex-col min-h-screen bg-cover bg-center" 
-      style="background-image: url('bg.jpg');">
-            
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-lg py-4 px-8 flex justify-between items-center flex-wrap">
-        <a href="#" class="flex items-center space-x-2">
-            <!-- Placeholder Logo (Replaced missing file) -->
-            <img src="https://placehold.co/40x40/22c55e/ffffff?text=K" alt="KRISHIBOT Logo" class="h-10 w-10 rounded-lg">
-            <span class="text-2xl font-bold text-green-700">KRISHIBOT</span>
-        </a>
-        <div class="flex items-center space-x-6">
-            <a href="#" class="text-gray-700 hover:text-green-600 font-medium transition duration-300">Home</a>
-            <a href="#" class="text-gray-700 hover:text-green-600 font-medium transition duration-300">About Us</a>
-            
-            <!-- Language Dropdown -->
-            <div class="relative inline-block text-left">
-                <div>
-                    <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="language-menu-button">
-                        Language
-                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
+<body class="flex flex-col min-h-screen bg-cover bg-center" style="background-image: url('bg.jpg');">
 
-                <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" id="language-menu">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="language-menu-button">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Hindi</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">English</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Kannada</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg py-4 px-8 flex justify-between items-center flex-wrap">
+    <a href="#" class="flex items-center space-x-2">
+      <img src="https://placehold.co/40x40/22c55e/ffffff?text=K" alt="KRISHIBOT Logo" class="h-10 w-10 rounded-lg">
+      <span class="text-2xl font-bold text-green-700">KRISHIBOT</span>
+    </a>
+    <div class="flex items-center space-x-6">
+      <a href="#" class="text-gray-700 hover:text-green-600 font-medium transition duration-300">Home</a>
+      <a href="#" class="text-gray-700 hover:text-green-600 font-medium transition duration-300">About Us</a>
+      
+      <!-- Language Dropdown -->
+      <div class="relative inline-block text-left">
+        <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="language-menu-button">
+          Language
+          <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" id="language-menu">
+          <div class="py-1" role="menu">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hindi</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">English</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kannada</a>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Main Content - Login Form -->
-    <main class="flex-grow flex items-center justify-center p-4">
-        <div class="bg-white/90 backdrop-blur-sm p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-sm sm:max-w-md">
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center p-4">
+    <!-- ✅ Glass Effect Container START -->
+    <div class="bg-white/30 backdrop-blur-lg border border-white/20 p-8 sm:p-12 rounded-2xl shadow-xl w-full max-w-sm sm:max-w-md">
+      <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-2">Welcome</h2>
+      <p class="text-center mb-8 text-gray-700">Sign in to your KRISHIBOT account</p>
 
-            <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-2">Welcome</h2>
-            <p class="text-center mb-8 text-gray-700">
-                Sign in to your KRISHIBOT account
-            </p>
-
-            <form id="login-form" class="space-y-6">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Username" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" required>
-                </div>
-                
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" required>
-                </div>
-
-                <div class="flex items-center justify-between text-sm">
-                    <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-green-600 border-gray-300 rounded">
-                        <label for="remember-me" class="ml-2 block text-gray-900">Remember me</label>
-                    </div>
-                    <a href="#" class="font-medium text-green-600 hover:text-green-700 transition duration-300">Forgot password?</a>
-                </div>
-
-                <div id="status-message" class="text-center text-sm font-medium hidden"></div>
-
-                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300 transform hover:scale-105">
-                    Sign In
-                </button>
-            </form>
-
-            <p class="mt-8 text-center text-sm text-gray-600">
-                Don't have an account?
-                <a href="#" class="font-medium text-green-600 hover:text-green-700">Register now</a>
-            </p>
-            <div id="user-id-display" class="mt-4 text-center text-xs text-gray-500 truncate"></div>
+      <form id="login-form" class="space-y-6">
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input type="text" id="username" name="username" placeholder="Username" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" required>
         </div>
-    </main>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" required>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <div class="flex items-center">
+            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-green-600 border-gray-300 rounded">
+            <label for="remember-me" class="ml-2 block text-gray-900">Remember me</label>
+          </div>
+          <a href="#" class="font-medium text-green-600 hover:text-green-700">Forgot password?</a>
+        </div>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        // Firebase SDKs from CDN
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
-        // Access global variables provided by the environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        <div id="status-message" class="text-center text-sm font-medium hidden"></div>
 
-        let app, auth, db;
+        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-300 transform hover:scale-105">
+          Sign In
+        </button>
+      </form>
 
-        // Function to initialize Firebase and sign in
-        const initFirebase = async () => {
-            try {
-                app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                // Sign in with the provided custom token or anonymously if not available
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Firebase initialization or sign-in failed:", error);
-            }
-        };
-
-        // Attach a listener to monitor auth state changes
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const userId = user.uid;
-                document.getElementById('user-id-display').textContent = `User ID: ${userId}`;
-                console.log("User logged in with ID:", userId);
-
-                // Placeholder for saving a user's data to Firestore
-                const userDocRef = doc(db, `/artifacts/${appId}/users/${userId}/profile/user_data`);
-                try {
-                    await setDoc(userDocRef, {
-                        lastLogin: new Date().toISOString(),
-                        loginAttempts: 1, 
-                    }, { merge: true });
-                } catch (error) {
-                    console.error("Error writing document:", error);
-                }
-            } else {
-                console.log("User is logged out or anonymous.");
-                document.getElementById('user-id-display').textContent = 'User ID: Anonymous';
-            }
-        });
-        
-        // Call the initialization function
-        if (Object.keys(firebaseConfig).length > 0) {
-            initFirebase();
-        } else {
-            console.warn("Firebase config not found. App will run without database features.");
-        }
-        
-    </script>
-    
-    <script>
-        // Language Dropdown functionality
-        const languageButton = document.getElementById('language-menu-button');
-        const languageMenu = document.getElementById('language-menu');
-
-        languageButton.addEventListener('click', () => {
-            languageMenu.classList.toggle('hidden');
-        });
-
-        // Close the dropdown if the user clicks outside of it
-        window.addEventListener('click', (event) => {
-            if (!languageButton.contains(event.target) && !languageMenu.contains(event.target)) {
-                languageMenu.classList.add('hidden');
-            }
-        });
-
-        // Simple form submission handler
-        const loginForm = document.getElementById('login-form');
-        const statusMessage = document.getElementById('status-message');
-
-        loginForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent default form submission
-            
-            // --- Placeholder Validation/Authentication (SUCCESS) ---
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            console.log(`Attempting login with username: ${username} and password: ${password}`);
-            statusMessage.classList.remove('hidden');
-            statusMessage.textContent = 'Login attempt successful! (Placeholder)';
-            statusMessage.classList.add('text-green-600');
-            statusMessage.classList.remove('text-red-600');
-            
-            // Define the URL for the next page (Krishi Bot Chat)
-            const NEXT_PAGE_URL = "mainpage.html"; // <-- CHANGED TO mainpage.html
-
-            // Custom message box to inform the user and redirect
-            const messageBox = document.createElement('div');
-            messageBox.className = 'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-60 z-50 p-4';
-            messageBox.innerHTML = `
-                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center">
-                    <p class="text-xl font-bold mb-4 text-green-700">Login Successful</p>
-                    <p class="text-gray-700">Authentication successful! Redirecting to Krishi Bot...</p>
-                    
-                    <!-- CONVERTED TO ANCHOR TAG FOR NAVIGATION -->
-                    <a href="${NEXT_PAGE_URL}" 
-                       id="close-message" 
-                       class="mt-6 inline-flex justify-center px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
-                       Continue to Bot
-                    </a>
-                </div>
-            `;
-            document.body.appendChild(messageBox);
-            
-            // Optionally, automatically redirect after a short delay
-            setTimeout(() => {
-                window.location.href = NEXT_PAGE_URL;
-            }, 2000); 
-
-            // Remove the message box if the user clicks the "Continue" anchor tag (which navigates anyway)
-            document.getElementById('close-message').addEventListener('click', () => {
-                messageBox.remove();
-            });
-        });
-    </script>
-</body>
-</html>
+      <p class="mt-8 text-center text-sm text-gray-600">
+        Don't have an account? <a href="#" class="font-medium text-green-600 hover:text-green-700">Register now</a>
+      </p>
+      <div id="user-id-display" class="mt-4 text-center text-xs text-gray-500 truncate"></div>
+    </div>
+    <!--
