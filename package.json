@@ -1,0 +1,32 @@
+{
+  "name": "krishibotlayout",
+  "version": "1.0.0",
+  "description": "An intelligent agricultural chatbot providing farming assistance using AI",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server",
+    "dev": "npx http-server -p 3000"
+  },
+  "keywords": [
+    "agriculture",
+    "chatbot",
+    "farming",
+    "ai",
+    "gemini",
+    "krishi"
+  ],
+  "author": "Krishi Bot Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcdeep16/krishibotlayout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abcdeep16/krishibotlayout/issues"
+  },
+  "homepage": "https://github.com/abcdeep16/krishibotlayout#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
