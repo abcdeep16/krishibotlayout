@@ -188,11 +188,19 @@
     </div>
 </div>
 
+<script src="config.js"></script>
 <script>
     // ----- CONFIGURATION -----
-    const API_KEY = "AIzaSyAunocrujEIPvb_6ipwOP_QSmEvStceg-s";
+    // Load API keys from localStorage or config
+    const API_KEY = localStorage.getItem('GEMINI_API_KEY') || (window.config && window.config.GEMINI_API_KEY);
     const CHAT_MODEL = "gemini-2.5-flash"; 
-    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/" + CHAT_MODEL + ":generateContent?key=" + API_KEY; 
+    
+    if (!API_KEY) {
+        console.error('❌ API Key not configured. Please set GEMINI_API_KEY in localStorage or config.js');
+        alert('⚠️ API Key is not configured. The chatbot will not work properly.\n\nPlease:\n1. Create a .env file with your API key\n2. Or set it in localStorage');
+    }
+    
+    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/" + CHAT_MODEL + ":generateContent?key=" + API_KEY;
 
     // ----- UI ELEMENTS -----
     const chatWindow = document.getElementById('chat-window');

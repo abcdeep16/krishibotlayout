@@ -1,0 +1,45 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.eslintcache
+.prettierignore
+
+# Node modules (if using Node.js)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+
+# Build and distribution
+dist/
+build/
+*.min.js
+*.min.css
+
+# OS files
+Thumbs.db
+.directory
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# API Keys and Secrets
+config.local.js
+secrets.json
+
+# Cache
+.cache/
+.pytest_cache/
+__pycache__/
